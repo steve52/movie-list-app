@@ -18,8 +18,7 @@ const MovieSchema = new Schema({
     required: true
   },
   rank: {
-    type: Number,
-    required: true
+    type: Number
   },
   watched: {
     type: Boolean,

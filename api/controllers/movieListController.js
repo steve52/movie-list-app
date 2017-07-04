@@ -13,14 +13,16 @@ exports.list_all_movies = function(req, res) {
 
 exports.add_a_movie = function(req, res) {
   var new_movie = new Movie(req.body);
-  Movie.count({}, (err, count) => {
-    if (err) res.send(err);
-    new_movie.rank = count + 1;
-    new_movie.save(function(err, movie) {
-      if (err) res.send(err);
-      res.json(movie);
-    });
-  });
+  Movie.findOne()
+    .sort('-rank')
+    .exec((err, movie) => {
+      new_movie.rank = movie.rank + 1;
+      console.log('new_movie', new_movie);
+      new_movie.save(function(err, movie) {
+        if (err) res.send(err);
+        res.json(movie);
+      });
+    })
 };
 
 exports.update_a_movie = function(req, res) {
@@ -28,9 +30,9 @@ exports.update_a_movie = function(req, res) {
     new: true,
     runValidators: true
   };
-  Task.findOneAndUpdate({_id: req.params.taskId}, req.body, opts, function(err, task) {
+  Movie.findByIdAndUpdate(req.params.movieId, req.body, opts, function(err, movie) {
     if (err) res.send(err);
-    res.json(task);
+    res.json(movie);
   });
 };
 
