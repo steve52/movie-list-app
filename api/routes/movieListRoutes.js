@@ -11,4 +11,7 @@ module.exports = function(app) {
   app.route('/movies/:movieId')
     .put(movieList.update_a_movie)
     .delete(movieList.delete_a_movie);
+
+  app.route('/movies/update_rank/:movieId')
+    .patch(movieList.update_rank)
 };

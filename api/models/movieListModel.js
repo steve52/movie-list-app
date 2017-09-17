@@ -7,18 +7,23 @@ const MovieSchema = new Schema({
     type: String,
     required: true
   },
-  description: {
+  plot: {
     type: String
   },
-  rotten_tomatoes_url: {
+  rating: {
     type: String
   },
-  added_by: {
-    type: String,
-    required: true
+  year: {
+    type: String
+  },
+  poster: {
+    type: String
   },
   rank: {
     type: Number
+  },
+  imdbID: {
+    type: String
   },
   watched: {
     type: Boolean,
