@@ -14,4 +14,7 @@ module.exports = function(app) {
 
   app.route('/movies/update_rank/:movieId')
     .patch(movieList.update_rank)
+    
+  app.route('/movies/mark_watched/:movieId')
+    .patch(movieList.mark_watched)
 };
