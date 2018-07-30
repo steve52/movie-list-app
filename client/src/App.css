@@ -1,0 +1,162 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}*/
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.App {
+  font-family: 'Open Sans', sans-serif;
+  color: #333333;
+}
+
+#logo {
+  width: 81px;
+  height: calc(100% - 44px);
+  margin-left: 32px;
+  margin-top: 44px;
+  background: #eee;
+}
+
+#main-header {
+  height: 130px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.18);
+  display: flex;
+}
+
+#main-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#main-nav ul {
+  display: flex;
+}
+
+#main-nav ul li {
+  margin-left: 73px;
+  height: 41px;
+}
+
+#main-nav ul li a {
+  display: inline-block;
+  font-size: 26px;
+  color: #333333;
+  letter-spacing: 0;
+  text-decoration: none;
+  height: 37px;
+}
+
+#main-nav ul li a.active {
+  border-bottom: 4px solid #75BACB;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+}
+
+ul.movie-list {
+  display: inline-block;
+}
+
+ul.movie-list li {
+  border-bottom: #9B9B9B 1px solid;
+}
+
+.movie {
+  height: 288px;
+  width: 1000px;
+  display: flex;
+  margin: 40px 0;
+}
+
+.movie-rank {
+  font-size: 42px;
+  color: #333333;
+}
+.movie-poster {
+  width: 190px;
+  height: 288px;
+  display: block;
+  margin: 0 40px;
+}
+
+.movie-info {
+  width: 695px;
+}
+
+.movie-title {
+  font-size: 26px;
+  line-height: 31px;
+  margin-bottom: 5px;
+}
+.movie-year {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.movie-plot {
+  font-size: 12px;
+  line-height: 18px;
+  margin-bottom: 18px;
+}
+.movie-ratings {
+  height: 99px;
+  border-top: 1px solid #E0E0E0;
+  border-bottom: 1px solid #E0E0E0;
+  display: flex;
+}
+
+.movie-rating {
+  width: 200px;
+}
+
+.movie-rating-label {
+  font-size: 14px;
+  font-weight: bold;
+}
