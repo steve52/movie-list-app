@@ -16,7 +16,7 @@ class Watched extends Component {
 
   // Fetch all movies and sort by rank
   fetchAllMovies() {
-    fetch('http://localhost:9000/movies', {
+    fetch('/movies', {
       method: 'GET'
     }).then((res) => {
       if (!res.ok) throw new Error('Network response was not ok');
@@ -29,7 +29,7 @@ class Watched extends Component {
 
   removeMovie(movieToRemove) {
     // Make a DELETE request to delete movie from database
-    fetch(`http://localhost:9000/movies/${movieToRemove._id}`, {
+    fetch(`/movies/${movieToRemove._id}`, {
       method: 'DELETE'
     }).then((res) => {
       if (!res.ok) throw new Error('Network response was not ok');
@@ -48,11 +48,11 @@ class Watched extends Component {
 
   render() {
     return (
-      <MovieList 
-        movies={this.state.movies} 
+      <MovieList
+        movies={this.state.movies}
         onSortEnd={this.onSortEnd}
         markWatched={this.markWatched}
-        removeMovie={this.removeMovie}  
+        removeMovie={this.removeMovie}
       />
     );
   }

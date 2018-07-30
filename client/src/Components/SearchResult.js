@@ -12,7 +12,7 @@ class SearchResult extends Component {
   }
 
   _fetchMovie(imdbID) {
-    return fetch(`http://www.omdbapi.com?apikey=77a4dcce&r=json&i=${imdbID}&plot=short`, {
+    return fetch(`https://www.omdbapi.com?apikey=77a4dcce&r=json&i=${imdbID}&plot=short`, {
       method: 'GET'
     }).then((res) => {
       res.json().then((m) => {
@@ -42,7 +42,7 @@ class SearchResult extends Component {
       `&imdbID=${encodeURIComponent(this.state.imdbID)}`;
 
     // Make a POST request to API with form data
-    fetch('http://localhost:9000/movies', {
+    fetch('movies', {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: formData
@@ -71,7 +71,7 @@ class SearchResult extends Component {
     } else if (isFinishedSaving) {
       addButton = "Added to list";
     } else {
-      addButton = 
+      addButton =
         <button
           className="btn btn-sm"
           onClick={() => this.addMovie()}>
