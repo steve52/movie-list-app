@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieList from './MovieList';
+import MovieList from '../shared/movieList';
 
 class Watched extends Component {
   constructor(props) {

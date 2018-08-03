@@ -42,7 +42,7 @@ class SearchResult extends Component {
       `&imdbID=${encodeURIComponent(this.state.imdbID)}`;
 
     // Make a POST request to API with form data
-    fetch('movies', {
+    fetch('/api/movies', {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: formData

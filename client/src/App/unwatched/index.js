@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieList from './MovieList';
+import MovieList from '../shared/movieList';
 import {arrayMove} from 'react-sortable-hoc';
 
 class Unwatched extends Component {

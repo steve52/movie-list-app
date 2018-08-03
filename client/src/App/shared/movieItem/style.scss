@@ -1,0 +1,53 @@
+.movie {
+  height: 288px;
+  width: 1000px;
+  display: flex;
+  margin: 40px 0;
+}
+
+.movie-rank {
+  font-size: 42px;
+  color: #333333;
+}
+.movie-poster {
+  width: 190px;
+  height: 288px;
+  display: block;
+  margin: 0 40px;
+}
+
+.movie-info {
+  width: 695px;
+}
+
+.movie-title {
+  font-size: 26px;
+  line-height: 31px;
+  margin-bottom: 5px;
+}
+.movie-year {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.movie-plot {
+  font-size: 12px;
+  line-height: 18px;
+  margin-bottom: 18px;
+}
+.movie-ratings {
+  height: 99px;
+  border-top: 1px solid #E0E0E0;
+  border-bottom: 1px solid #E0E0E0;
+  display: flex;
+}
+
+.movie-rating {
+  width: 200px;
+}
+
+.movie-rating-label {
+  font-size: 14px;
+  font-weight: bold;
+}

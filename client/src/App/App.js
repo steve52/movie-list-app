@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
-import MovieSearch from './Components/MovieSearch';
-import Unwatched from './Components/Unwatched';
-import Watched from './Components/Watched';
+import './App.scss';
+import MovieSearch from './search';
+import Unwatched from './unwatched';
+import Watched from './watched';
 import {
   BrowserRouter as Router,
   Redirect,
@@ -26,7 +26,7 @@ class App extends Component {
                 <li><NavLink to="/search">Find A Movie</NavLink></li>
               </ul>
             </nav>
-          </header> 
+          </header>
           <section>
             <Route path="/unwatched" component={Unwatched}/>
             <Route path="/watched" component={Watched}/>

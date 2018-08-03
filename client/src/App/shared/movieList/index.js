@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Movie from './Movie';
+import Movie from '../movieItem';
 import {SortableContainer, SortableElement} from 'react-sortable-hoc';
 
 class MovieList extends Component {
@@ -17,9 +17,9 @@ class MovieList extends Component {
     const MovieList = SortableContainer(({movies}) => {
       let movieItems = movies.map((movie, index) => {
         return (
-          <MovieItem 
-            key={`item-${index}`} 
-            index={index} 
+          <MovieItem
+            key={`item-${index}`}
+            index={index}
             movie={movie}
           />
         );
@@ -33,8 +33,8 @@ class MovieList extends Component {
     });
 
     return (
-      <MovieList 
-        movies={this.props.movies} 
+      <MovieList
+        movies={this.props.movies}
         onSortEnd={this.props.onSortEnd
       }/>
     );

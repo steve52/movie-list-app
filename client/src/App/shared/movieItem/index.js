@@ -45,27 +45,27 @@ class Movie extends Component {
     const tomatoIcon = (rating) => {
       if (!rating) return <UnknownRatingSVG/>;
       const ratingNum = rating.slice(0, -1);
-      const isGood = parseInt(ratingNum) < 65;
+      const isGood = parseInt(ratingNum, 10) < 65;
       return isGood ? <TomatoGoodSVG/> : <TomatoBadSVG/>;
     };
 
     const humanIcon = (rating) => {
       if (!rating) return <UnknownRatingSVG/>;
       const ratingNum = rating.slice(0, -1);
-      const isGood = parseInt(ratingNum) < 65;
+      const isGood = parseInt(ratingNum, 10) < 65;
       return isGood ? <HumanGoodSVG/> : <HumanBadSVG/>;
     };
 
     let createdDate = new Date(this.props.movie.created_date);
 
     let foramttedCreatedDate = `${createdDate.getMonth() + 1}/${createdDate.getDate()}/${createdDate.getFullYear()}`;
-  
+
     return (
       <div className="movie">
         <span className="movie-rank">{this.props.movie.rank}</span>
         <img
-          src={this.props.movie.poster} 
-          className="movie-poster" 
+          src={this.props.movie.poster}
+          className="movie-poster"
           alt="Movie Poster"
         />
         <div className="movie-info">
@@ -94,7 +94,7 @@ class Movie extends Component {
                 <div className="movie-rating-value"></div>
               </div>
             </div>
-            
+
           </div>
           <div className="">
             <div className="movie-added">
