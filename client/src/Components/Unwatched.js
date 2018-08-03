@@ -19,7 +19,7 @@ class Unwatched extends Component {
 
   // Fetch all movies and sort by rank
   fetchAllMovies() {
-    fetch('movies', {
+    fetch('/api/movies', {
       method: 'GET'
     }).then((res) => {
       if (!res.ok) throw new Error('Network response was not ok');
@@ -33,7 +33,7 @@ class Unwatched extends Component {
   markWatched(movieToUpdate) {
     // Set 'watched' to true and make a PUT request that updates this movie in the database
     movieToUpdate.watched = true;
-    fetch(`movies/mark_watched/${movieToUpdate._id}`, {
+    fetch(`/api/movies/mark_watched/${movieToUpdate._id}`, {
       method: 'PATCH'
     }).then((res) => {
       if (!res.ok) throw new Error('Network response was not ok');
@@ -49,7 +49,7 @@ class Unwatched extends Component {
 
   removeMovie(movieToRemove) {
     // Make a DELETE request to delete movie from database
-    fetch(`movies/${movieToRemove._id}`, {
+    fetch(`/api/movies/${movieToRemove._id}`, {
       method: 'DELETE'
     }).then((res) => {
       if (!res.ok) throw new Error('Network response was not ok');
@@ -67,7 +67,7 @@ class Unwatched extends Component {
 
     let movie = this.state.movies[oldIndex];
     let newRank = this.state.movies[newIndex].rank;
-    fetch(`movies/update_rank/${movie._id}`, {
+    fetch(`/api/movies/update_rank/${movie._id}`, {
       method: 'PATCH',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: 'rank=' + newRank

@@ -16,7 +16,7 @@ class Watched extends Component {
 
   // Fetch all movies and sort by rank
   fetchAllMovies() {
-    fetch('/movies', {
+    fetch('/api/movies', {
       method: 'GET'
     }).then((res) => {
       if (!res.ok) throw new Error('Network response was not ok');
@@ -29,7 +29,7 @@ class Watched extends Component {
 
   removeMovie(movieToRemove) {
     // Make a DELETE request to delete movie from database
-    fetch(`/movies/${movieToRemove._id}`, {
+    fetch(`/api/movies/${movieToRemove._id}`, {
       method: 'DELETE'
     }).then((res) => {
       if (!res.ok) throw new Error('Network response was not ok');
