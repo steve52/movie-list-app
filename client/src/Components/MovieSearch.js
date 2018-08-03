@@ -28,7 +28,7 @@ class MovieSearch extends Component {
   }
 
   _searchForMovies(title) {
-    fetch(`https://www.omdbapi.com?apikey=77a4dcce&r=json&s=${title}`, {
+    fetch(`https://www.omdbapi.com?apikey=${process.env.REACT_APP_OMDB_API_KEY}&r=json&s=${title}`, {
       method: 'GET'
     }).then((res) => {
       res.json().then((res) => {

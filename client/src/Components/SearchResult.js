@@ -12,7 +12,7 @@ class SearchResult extends Component {
   }
 
   _fetchMovie(imdbID) {
-    return fetch(`https://www.omdbapi.com?apikey=77a4dcce&r=json&i=${imdbID}&plot=short`, {
+    return fetch(`https://www.omdbapi.com?apikey=${process.env.REACT_APP_OMDB_API_KEY}&r=json&i=${imdbID}&plot=short`, {
       method: 'GET'
     }).then((res) => {
       res.json().then((m) => {
