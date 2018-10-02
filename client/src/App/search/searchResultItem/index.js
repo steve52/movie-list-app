@@ -18,9 +18,7 @@ class SearchResult extends Component {
       res.json().then((m) => {
         let ratingObj = m.Ratings.find(m => m.Source === 'Rotten Tomatoes');
         let rating = ratingObj ? ratingObj.Value : 'N/A';
-        if (ratingObj === undefined) {
-          console.warn('Couldn\'t find Rotten Tomatoes rating. API may have changed.', m);
-        }
+
         this.setState({rating: rating });
         this.setState({poster: m.Poster});
         this.setState({title: m.Title});
@@ -79,33 +77,44 @@ class SearchResult extends Component {
         </button>;
     }
 
-      return (
-        <div className="movie container">
-          <div className="row">
-            <div className="col-3">
-              <img src={this.state.poster} className="movie_img" alt="Movie Poster"/>
-            </div>
-            <div className="col-6">
-              <h4 className="movie_title">{this.state.title}</h4>
-              <div className="movie_rating">
-                {this.state.rating}
-              </div>
-              <div className="movie_description">
-                {this.state.plot}
-              </div>
-              <div className="movie_year">
-                {this.state.year}
-              </div>
-            </div>
-            <div className="col-3">
-              <div className="movie_buttons">
-                {addButton}
-              </div>
-            </div>
+    const Poster = (props) => {
+      let src = props.src;
+
+      const onError = (e) => {
+        e.target.src = '/image_placeholder.png';
+        e.target.style = ''
+      }
+
+      let img = <img src={src} className={props.className} alt={props.alt} onError={onError} />;
+
+      return img
+    }
+
+    return (
+      <div className="search-result">
+        <div className="col-3">
+          <Poster src={this.state.poster} className="search-result-poster" alt="Movie Poster"></Poster>
+        </div>
+        <div className="col-6">
+          <h4 className="movie_title">{this.state.title}</h4>
+          <div className="movie_rating">
+            {this.state.rating}
+          </div>
+          <div className="movie_description">
+            {this.state.plot}
+          </div>
+          <div className="movie_year">
+            {this.state.year}
           </div>
         </div>
-      );
-    }
+        <div className="col-3">
+          <div className="movie_buttons">
+            {addButton}
+          </div>
+        </div>
+      </div>
+    );
   }
+}
 
 export default SearchResult;

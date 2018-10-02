@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import SearchResult from './SearchResult';
+import SearchResultsList from './searchResultsList';
 
 class MovieSearch extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      searchTerm: null,
+      term: '',
       results: []
     };
 
@@ -14,17 +14,33 @@ class MovieSearch extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    const qs = this.props.location.search;
+    if (!qs) return {};
+
+    const params = qs.split('?')[1].split('&').reduce((acc, curr) => {
+      const [k, v] = curr.split('=');
+      acc[k] = v;
+      return acc;
+    }, {});
+
+    this.setState({params: params});
+
+    // TODO:sg improve with _.isNil()
+    if (typeof params.term !== 'undefined') {
+      this.setState({term: params.term});
+      this._searchForMovies(params.term);
+    }
+  }
+
   handleInputChange(event) {
     const value = event.target.value;
-
-    this.setState({
-        searchTerm: value
-    });
+    this.setState({term: value})
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this._searchForMovies(this.state.searchTerm);
+    this._searchForMovies(this.state.term);
   }
 
   _searchForMovies(title) {
@@ -39,16 +55,7 @@ class MovieSearch extends Component {
   }
 
   render() {
-    let results = this.state.results.map((movie => {
-      return (
-        <div className="col-lg-6" key={movie.imdbID}>
-          <SearchResult
-            imdbID={movie.imdbID}
-          />
-        </div>
-      );
-    }));
-
+    console.log("RENDER SEARCH INDEX")
     return (
       <div className="add_movie">
         <form className="add_movie_form" onSubmit={this.handleSubmit}>
@@ -56,6 +63,8 @@ class MovieSearch extends Component {
             <label>Title</label>
             <input
               type="text"
+              name="movie-title"
+              value={this.state.term}
               onChange={this.handleInputChange}
             />
           </div>
@@ -63,7 +72,7 @@ class MovieSearch extends Component {
             Search
           </button>
         </form>
-        {this.state.results && results}
+        <SearchResultsList results={this.state.results}/>
       </div>
     );
   }
