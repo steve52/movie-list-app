@@ -16,14 +16,16 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
-          <header id="main-header">
-            <div id="logo"></div>
-            <nav id="main-nav">
-              <ul>
-                <li><NavLink to="/unwatched">What's On Tonight?</NavLink></li>
-                <li><NavLink to="/watched">Our Favorites</NavLink></li>
-                <li><NavLink to="/search">Find A Movie</NavLink></li>
+        <div className="App container">
+          <header id="main-header" className="row">
+            <div className="col-sm-2 d-flex justify-content-center">
+              <img id="logo"></img>
+            </div>
+            <nav className="col">
+              <ul className="nav row">
+                <li className="col nav-item"><NavLink to="/unwatched">What's On Tonight?</NavLink></li>
+                <li className="col nav-item"><NavLink to="/watched">Our Favorites</NavLink></li>
+                <li className="col nav-item"><NavLink to="/search">Find A Movie</NavLink></li>
               </ul>
             </nav>
           </header>

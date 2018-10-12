@@ -9,59 +9,44 @@
 @import './shared/movieList/style.scss';
 @import './search/searchResultItem/style.scss';
 
-
-
-
-
-
 .App {
   font-family: 'Open Sans', sans-serif;
   color: #333333;
 }
 
 #logo {
-  width: 81px;
-  height: calc(100% - 44px);
-  margin-left: 32px;
-  margin-top: 44px;
+  width: 33px;
+  height: 33px;
   background: #eee;
 }
 
 #main-header {
-  height: 130px;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.18);
-  display: flex;
+  padding-top: 15px;
 }
 
-#main-nav {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-#main-nav ul {
-  display: flex;
-}
-
-#main-nav ul li {
-  margin-left: 73px;
-  height: 41px;
-}
-
-#main-nav ul li a {
-  display: inline-block;
-  font-size: 26px;
-  color: #333333;
-  letter-spacing: 0;
-  text-decoration: none;
-  height: 37px;
-}
-
-#main-nav ul li a.active {
-  border-bottom: 4px solid #75BACB;
-}
-
-section {
+.nav-item {
   display: flex;
   justify-content: center;
+  padding: 0 10px;
+}
+
+.nav {
+  padding: 15px 0;
+}
+.nav li a {
+  font-size: 10px;
+  text-decoration: none;
+  flex-grow: 1;
+  text-align: center;
+  color: #333;
+  @include media-breakpoint-up(sm) {
+    font-size: 18px;
+  }
+  @include media-breakpoint-up(lg) {
+    font-size: 22px;
+  }
+}
+
+.nav .active {
+  border-bottom: 4px solid #75BACB;
 }
