@@ -62,59 +62,61 @@ class Movie extends Component {
 
     return (
       <div className="movie">
-        <span className="movie-rank">{this.props.movie.rank}</span>
+        <span className="movie-rank d-none">{this.props.movie.rank}</span>
         <img
           src={this.props.movie.poster}
-          className="movie-poster"
+          className="movie-poster img-thumbnail"
           alt="Movie Poster"
         />
-        <div className="movie-info">
-          <div className="">
-            <h4 className="movie-title">{this.props.movie.title}</h4>
-            <div className="movie-year">
-              {this.props.movie.year}
-            </div>
-            <div className="movie-plot">
-              {this.props.movie.plot}
-            </div>
-            <div className="movie-ratings">
-              <div className="movie-rating tomato-rating">
-                <div className="movie-rating-label">Rotten Tomatoes</div>
-                <div className="movie-rating-icon">{tomatoIcon(this.props.movie.rating)}</div>
-                <div className="movie-rating-value">{this.props.movie.rating}</div>
-              </div>
-              <div className="movie-rating jackie-rating">
-                <div className="movie-rating-label">Jackie</div>
-                <div className="movie-rating-icon">{humanIcon()}</div>
-                <div className="movie-rating-value"></div>
-              </div>
-              <div className="movie-rating steve-rating">
-                <div className="movie-rating-label">Steve</div>
-                <div className="movie-rating-icon">{humanIcon()}</div>
-                <div className="movie-rating-value"></div>
-              </div>
-            </div>
+        <h5 className="movie-title h5">{this.props.movie.title}</h5>
 
+        <div className="movie-year">
+          {this.props.movie.year}
+        </div>
+
+        <div className="movie-plot">
+          {this.props.movie.plot}
+        </div>
+
+        <div className="movie-ratings">
+          <div className="movie-rating tomato-rating">
+            <div className="movie-rating-label">Rotten Tomatoes</div>
+            <div className="movie-rating-icon">{tomatoIcon(this.props.movie.rating)}</div>
+            <div className="movie-rating-value">{this.props.movie.rating}</div>
           </div>
-          <div className="">
-            <div className="movie-added">
-                <span>ADDED</span>
-                {foramttedCreatedDate}
-            </div>
-            <div className="movie-buttons">
-              <button
-                className=""
-                onClick={() => this.props.markWatched(this.props.movie)}>
-                Mark watched
-              </button>
-              <button
-                className=""
-                onClick={() => this.props.removeMovie(this.props.movie)}>
-                Delete
-              </button>
-            </div>
+          <div className="movie-rating jackie-rating">
+            <div className="movie-rating-label">Jackie</div>
+            <div className="movie-rating-icon">{humanIcon()}</div>
+            <div className="movie-rating-value"></div>
+          </div>
+          <div className="movie-rating steve-rating">
+            <div className="movie-rating-label">Steve</div>
+            <div className="movie-rating-icon">{humanIcon()}</div>
+            <div className="movie-rating-value"></div>
           </div>
         </div>
+
+        <div className="d-flex">
+          <div className="movie-added flex-grow-1">
+              <span>ADDED ON&nbsp;</span>{foramttedCreatedDate}
+          </div>
+          <div className="movie-buttons flex-grow-1">
+            <button
+              type="button"
+              className="btn btn-info btn-sm"
+              onClick={() => this.props.markWatched(this.props.movie)}>
+              Mark watched
+            </button>
+            <button
+              type="button"
+              className="btn btn-info btn-sm"
+              onClick={() => this.props.removeMovie(this.props.movie)}>
+              Delete
+            </button>
+          </div>
+
+        </div>
+
       </div>
     );
   }

@@ -5,7 +5,7 @@ import {SortableContainer, SortableElement} from 'react-sortable-hoc';
 class MovieList extends Component {
   render() {
     const MovieItem = SortableElement(({movie}) =>
-      <li>
+      <li className="movie-list-item clearfix">
         <Movie
           movie={movie}
           markWatched={this.props.markWatched}
@@ -26,7 +26,7 @@ class MovieList extends Component {
       });
 
       return (
-        <ul className="movie-list">
+        <ul className="movie-list list-unstyled">
           {movieItems}
         </ul>
       );

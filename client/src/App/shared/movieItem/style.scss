@@ -1,53 +1,79 @@
-.movie {
-  height: 288px;
-  width: 1000px;
-  display: flex;
-  margin: 40px 0;
-}
+// .movie {
+//   height: 288px;
+//   width: 1000px;
+//   display: flex;
+//   margin: 40px 0;
+// }
 
-.movie-rank {
-  font-size: 42px;
-  color: #333333;
-}
+// .movie-rank {
+//   font-size: 42px;
+//   color: #333333;
+// }
+
 .movie-poster {
-  width: 190px;
-  height: 288px;
+  width: 100px;
+  // height: 288px;
   display: block;
-  margin: 0 40px;
-}
-
-.movie-info {
-  width: 695px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  float: left;
+  @include media-breakpoint-up(sm) {
+    margin-right: $margin-lg;
+    width: 190px;
+    // height: 288px;
+  }
 }
 
 .movie-title {
-  font-size: 26px;
-  line-height: 31px;
-  margin-bottom: 5px;
+  margin-bottom: 0;
 }
 .movie-year {
-  font-size: 14px;
-  line-height: 17px;
+  font-size: .8rem;
   font-weight: bold;
   margin-bottom: 5px;
 }
 .movie-plot {
-  font-size: 12px;
+  font-size: .8rem;
   line-height: 18px;
   margin-bottom: 18px;
 }
 .movie-ratings {
-  height: 99px;
   border-top: 1px solid #E0E0E0;
   border-bottom: 1px solid #E0E0E0;
   display: flex;
+  padding: 5px;
+  margin-bottom: 10px;
+  clear: both;
+  @include media-breakpoint-up(sm) {
+    clear: none;
+  }
 }
 
 .movie-rating {
-  width: 200px;
+  flex-grow: 1;
 }
 
 .movie-rating-label {
-  font-size: 14px;
+  font-size: .9rem;
   font-weight: bold;
+}
+
+.movie-added {
+  font-size: .8rem;
+  display: flex;
+  align-items: center;
+}
+
+.movie-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bd-highlight {
+  background-color: rgba(86,61,124,.15);
+  border: 1px solid rgba(86,61,124,.15);
+}
+
+.p-2 {
+  padding: .5rem!important;
 }

@@ -1,7 +1,18 @@
-ul.movie-list {
-  display: inline-block;
-}
+// ul.movie-list {
+//   display: inline-block;
+// }
 
-ul.movie-list li {
+// ul.movie-list li {
+//   border-bottom: #9B9B9B 1px solid;
+// }
+
+.movie-list {
+
+}
+.movie-list-item:first-child {
+  // border-top: #9B9B9B 1px solid;
+}
+.movie-list-item {
+  padding: $margin-sm;
   border-bottom: #9B9B9B 1px solid;
 }

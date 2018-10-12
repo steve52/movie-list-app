@@ -1,6 +1,6 @@
 // Required
 @import "node_modules/bootstrap/scss/functions";
-@import "node_modules/bootstrap/scss/variables";
+@import "variable.scss";
 @import "node_modules/bootstrap/scss/mixins";
 
 @import 'node_modules/bootstrap/scss/bootstrap';
@@ -8,6 +8,7 @@
 @import './shared/movieItem/style.scss';
 @import './shared/movieList/style.scss';
 @import './search/searchResultItem/style.scss';
+
 
 .App {
   font-family: 'Open Sans', sans-serif;

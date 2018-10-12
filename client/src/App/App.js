@@ -29,7 +29,7 @@ class App extends Component {
               </ul>
             </nav>
           </header>
-          <section>
+          <section className="row">
             <Route path="/unwatched" component={Unwatched}/>
             <Route path="/watched" component={Watched}/>
             <Route path="/search" component={MovieSearch}/>
