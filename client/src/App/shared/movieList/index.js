@@ -10,6 +10,7 @@ class MovieList extends Component {
           movie={movie}
           markWatched={this.props.markWatched}
           removeMovie={this.props.removeMovie}
+          type={this.props.type}
         />
       </li>
     );
@@ -21,6 +22,7 @@ class MovieList extends Component {
             key={`item-${index}`}
             index={index}
             movie={movie}
+            disabled={true}
           />
         );
       });
@@ -35,8 +37,7 @@ class MovieList extends Component {
     return (
       <MovieList
         movies={this.props.movies}
-        onSortEnd={this.props.onSortEnd
-      }/>
+        onSortEnd={this.props.onSortEnd}/>
     );
   }
 }

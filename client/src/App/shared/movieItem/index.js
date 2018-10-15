@@ -38,10 +38,83 @@ class UnknownRatingSVG extends Component {
   }
 }
 
-
-
 class Movie extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSavingMovie: false,
+      isFinishedSaving: false
+    };
+  }
+
+  _addMovie() {
+    this.setState({isSaving: true});
+    let formData =
+      `poster=${encodeURIComponent(this.props.movie.poster)}` +
+      `&title=${encodeURIComponent(this.props.movie.title)}` +
+      `&plot=${encodeURIComponent(this.props.movie.plot)}` +
+      `&year=${encodeURIComponent(this.props.movie.year)}` +
+      `&rating=${encodeURIComponent(this.props.movie.rating)}` +
+      `&imdbID=${encodeURIComponent(this.props.movie.imdbID)}`;
+
+    // Make a POST request to API with form data
+    fetch('/api/movies', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: formData
+    }).then((res) => {
+      if (!res.ok) throw new Error('Network response was not ok');
+      res.json().then((movie) => {
+        this.setState({isSaving: false});
+        this.setState({isFinishedSaving: true});
+        // TODO: update the date store with new movie
+      });
+    });
+  }
+
   render() {
+    let addedOnDate = new Date(this.props.movie.created_date);
+    let foramttedAddedOnDate = `${addedOnDate.getMonth() + 1}/${addedOnDate.getDate()}/${addedOnDate.getFullYear()}`;
+
+    // Define the ADD button
+    let addButton;
+
+    if (this.state.isSaving) {
+      addButton = <span>Adding...</span>;
+    } else if (this.state.isFinishedSaving) {
+      addButton = <span>Added to list</span>;
+    } else {
+      addButton =
+        <button
+          className="btn btn-info btn-sm"
+          onClick={() => this._addMovie()}>
+          Add
+        </button>;
+    }
+
+    // Define the action buttons depending on type of movie list
+    let buttons;
+    if (this.props.type === 'search') {
+      buttons = addButton
+    } else {
+      buttons =
+        [<button
+          type="button"
+          className="btn btn-info btn-sm"
+          key="0"
+          onClick={() => this.props.markWatched(this.props.movie)}>
+          Mark watched
+        </button>,
+        <button
+          type="button"
+          className="btn btn-info btn-sm"
+          key="1"
+          onClick={() => this.props.removeMovie(this.props.movie)}>
+          Delete
+        </button>]
+    };
+
+    // Rating icons
     const tomatoIcon = (rating) => {
       if (!rating) return <UnknownRatingSVG/>;
       const ratingNum = rating.slice(0, -1);
@@ -55,10 +128,6 @@ class Movie extends Component {
       const isGood = parseInt(ratingNum, 10) < 65;
       return isGood ? <HumanGoodSVG/> : <HumanBadSVG/>;
     };
-
-    let createdDate = new Date(this.props.movie.created_date);
-
-    let foramttedCreatedDate = `${createdDate.getMonth() + 1}/${createdDate.getDate()}/${createdDate.getFullYear()}`;
 
     return (
       <div className="movie">
@@ -84,37 +153,32 @@ class Movie extends Component {
             <div className="movie-rating-icon">{tomatoIcon(this.props.movie.rating)}</div>
             <div className="movie-rating-value">{this.props.movie.rating}</div>
           </div>
-          <div className="movie-rating jackie-rating">
-            <div className="movie-rating-label">Jackie</div>
-            <div className="movie-rating-icon">{humanIcon()}</div>
-            <div className="movie-rating-value"></div>
-          </div>
-          <div className="movie-rating steve-rating">
-            <div className="movie-rating-label">Steve</div>
-            <div className="movie-rating-icon">{humanIcon()}</div>
-            <div className="movie-rating-value"></div>
-          </div>
+
+          {this.props.type !== 'search' &&
+            <div className="movie-rating jackie-rating">
+              <div className="movie-rating-label">Jackie</div>
+              <div className="movie-rating-icon">{humanIcon()}</div>
+              <div className="movie-rating-value"></div>
+            </div>
+          }
+          {this.props.type !== 'search' &&
+            <div className="movie-rating steve-rating">
+              <div className="movie-rating-label">Steve</div>
+              <div className="movie-rating-icon">{humanIcon()}</div>
+              <div className="movie-rating-value"></div>
+            </div>
+        }
         </div>
 
         <div className="d-flex">
-          <div className="movie-added flex-grow-1">
-              <span>ADDED ON&nbsp;</span>{foramttedCreatedDate}
-          </div>
+          {this.props.type !== 'search' &&
+            <div className="movie-added flex-grow-1">
+                <span>ADDED ON&nbsp;</span>{foramttedAddedOnDate}
+            </div>
+          }
           <div className="movie-buttons flex-grow-1">
-            <button
-              type="button"
-              className="btn btn-info btn-sm"
-              onClick={() => this.props.markWatched(this.props.movie)}>
-              Mark watched
-            </button>
-            <button
-              type="button"
-              className="btn btn-info btn-sm"
-              onClick={() => this.props.removeMovie(this.props.movie)}>
-              Delete
-            </button>
+            {buttons}
           </div>
-
         </div>
 
       </div>
