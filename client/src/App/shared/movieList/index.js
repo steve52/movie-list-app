@@ -17,12 +17,13 @@ class MovieList extends Component {
 
     const MovieList = SortableContainer(({movies}) => {
       let movieItems = movies.map((movie, index) => {
+        const disableSortable = this.props.type === 'search';
         return (
           <MovieItem
             key={`item-${index}`}
             index={index}
             movie={movie}
-            disabled={true}
+            disabled={disableSortable}
           />
         );
       });
