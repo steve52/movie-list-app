@@ -96,6 +96,23 @@ class Movie extends Component {
     let buttons;
     if (this.props.type === 'search') {
       buttons = addButton
+    } else if (this.props.type === 'watched') {
+      buttons =
+        [<button
+          type="button"
+          className="btn btn-info btn-sm"
+          key="0"
+          disabled={true}
+          onClick={() => this.props.markUnwatched(this.props.movie)}>
+          Mark uwatched
+        </button>,
+        <button
+          type="button"
+          className="btn btn-info btn-sm"
+          key="1"
+          onClick={() => this.props.removeMovie(this.props.movie)}>
+          Delete
+        </button>];
     } else {
       buttons =
         [<button
@@ -111,7 +128,7 @@ class Movie extends Component {
           key="1"
           onClick={() => this.props.removeMovie(this.props.movie)}>
           Delete
-        </button>]
+        </button>];
     };
 
     // Rating icons

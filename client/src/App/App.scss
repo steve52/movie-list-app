@@ -13,8 +13,8 @@
 }
 
 #logo {
-  width: 33px;
-  height: 33px;
+  width: 66px;
+  height: 66px;
   background: #eee;
 }
 
@@ -33,6 +33,7 @@
 }
 .nav li a {
   font-size: 10px;
+  font-weight: bold;
   text-decoration: none;
   flex-grow: 1;
   text-align: center;

@@ -31,7 +31,7 @@ class Unwatched extends Component {
   }
 
   markWatched(movieToUpdate) {
-    // Set 'watched' to true and make a PUT request that updates this movie in the database
+    // Set 'watched' to true and make a PATCH request that updates this movie in the database
     movieToUpdate.watched = true;
     fetch(`/api/movies/mark_watched/${movieToUpdate._id}`, {
       method: 'PATCH'

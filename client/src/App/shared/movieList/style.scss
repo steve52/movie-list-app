@@ -7,11 +7,9 @@
 // }
 
 .movie-list {
+  width: 100%;
+}
 
-}
-.movie-list-item:first-child {
-  // border-top: #9B9B9B 1px solid;
-}
 .movie-list-item {
   padding: $margin-sm;
   border-bottom: #9B9B9B 1px solid;

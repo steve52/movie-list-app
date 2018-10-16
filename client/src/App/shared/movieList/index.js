@@ -10,6 +10,7 @@ class MovieList extends Component {
           movie={movie}
           markWatched={this.props.markWatched}
           removeMovie={this.props.removeMovie}
+          markUnwatched={this.props.markUnwatched}
           type={this.props.type}
         />
       </li>

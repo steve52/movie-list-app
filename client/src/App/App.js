@@ -17,7 +17,9 @@ class App extends Component {
         <div className="App container">
           <header id="main-header" className="row">
             <div className="col-sm-2 d-flex justify-content-center">
-              <img id="logo"></img>
+              <img
+                id="logo"
+                alt="Logo"/>
             </div>
             <nav className="col">
               <ul className="nav row">

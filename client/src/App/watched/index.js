@@ -8,6 +8,7 @@ class Watched extends Component {
       movies: []
     };
     this.removeMovie = this.removeMovie.bind(this);
+    this.markUnwatched = this.markUnwatched.bind(this);
   }
 
   _isWatched(movie) {
@@ -15,7 +16,7 @@ class Watched extends Component {
   }
 
   // Fetch all movies and sort by rank
-  fetchAllMovies() {
+  _fetchAllMovies() {
     fetch('/api/movies', {
       method: 'GET'
     }).then((res) => {
@@ -23,6 +24,23 @@ class Watched extends Component {
       res.json().then((movies) => {
         movies = movies.filter(this._isWatched).sort((a,b) => a.rank - b.rank);
         this.setState({movies:movies});
+      });
+    });
+  }
+
+  markUnwatched(movieToUpdate) {
+    // Set 'watched' to true and make a PATCH request that updates this movie in the database
+    movieToUpdate.watched = false;
+    fetch(`/api/movies/mark_watched/${movieToUpdate._id}`, {
+      method: 'PATCH'
+    }).then((res) => {
+      if (!res.ok) throw new Error('Network response was not ok');
+      // Use the updatedMovie that is returned by the API to update our local list
+      res.json().then((updatedMovie) => {
+        let movies = this.state.movies.filter((movie) => {
+          return movie._id !== movieToUpdate._id;
+        });
+        this.setState({movies: movies});
       });
     });
   }
@@ -43,17 +61,19 @@ class Watched extends Component {
   }
 
   componentDidMount() {
-    this.fetchAllMovies();
+    this._fetchAllMovies();
   }
 
   render() {
     return (
-      <MovieList
-        movies={this.state.movies}
-        onSortEnd={this.onSortEnd}
-        markWatched={this.markWatched}
-        removeMovie={this.removeMovie}
-      />
+      <div className="search-wrapper">
+        <MovieList
+          movies={this.state.movies}
+          onSortEnd={this.onSortEnd}
+          markUnwatched={this.markUnwatched}
+          removeMovie={this.removeMovie}
+        />
+      </div>
     );
   }
 }
