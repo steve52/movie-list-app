@@ -81,7 +81,9 @@ class MovieSearch extends Component {
   render() {
     return (
       <div className="search-wrapper">
-        <form onSubmit={this.handleSubmit}>
+        <form
+          className="search-form"
+          onSubmit={this.handleSubmit}>
           <div className="input-group">
             <input
               type="text"

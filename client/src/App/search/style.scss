@@ -1,0 +1,5 @@
+.search-form {
+  @include media-breakpoint-up(sm) {
+    margin-top: 15px;
+  }
+}
