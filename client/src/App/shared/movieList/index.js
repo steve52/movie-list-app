@@ -39,7 +39,8 @@ class MovieList extends Component {
     return (
       <MovieList
         movies={this.props.movies}
-        onSortEnd={this.props.onSortEnd}/>
+        onSortEnd={this.props.onSortEnd}
+        pressDelay={500}/>
     );
   }
 }
