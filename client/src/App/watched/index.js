@@ -72,6 +72,7 @@ class Watched extends Component {
           onSortEnd={this.onSortEnd}
           markUnwatched={this.markUnwatched}
           removeMovie={this.removeMovie}
+          type="watched"
         />
       </div>
     );
