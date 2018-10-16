@@ -92,7 +92,7 @@ class MovieSearch extends Component {
             <div className="input-group-append">
               <button
                 className="btn btn-info"
-                type="button">Search</button>
+                type="submit">Search</button>
             </div>
           </div>
         </form>
