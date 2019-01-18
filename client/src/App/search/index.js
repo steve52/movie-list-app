@@ -35,7 +35,7 @@ class MovieSearch extends Component {
 
   handleInputChange(event) {
     const value = event.target.value;
-    this.setState({term: value})
+    this.setState({term: value});
   }
 
   handleSubmit(event) {

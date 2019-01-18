@@ -23,6 +23,7 @@ class Unwatched extends Component {
       method: 'GET'
     }).then((res) => {
       if (!res.ok) throw new Error('Network response was not ok');
+      console.log('res', res);
       res.json().then((movies) => {
         movies = movies.filter(this._isUnwatched).sort((a,b) => a.rank - b.rank);
         this.setState({movies:movies});
@@ -79,7 +80,7 @@ class Unwatched extends Component {
     this.setState({
       movies: arrayMove(this.state.movies, oldIndex, newIndex),
     });
-  };
+  }
 
   componentDidMount() {
     this.fetchAllMovies();

@@ -16,11 +16,6 @@ class App extends Component {
       <Router>
         <div className="App container">
           <header id="main-header" className="row">
-            <div className="col-sm-2 d-flex justify-content-center">
-              <img
-                id="logo"
-                alt=""/>
-            </div>
             <nav className="col">
               <ul className="nav row">
                 <li className="col nav-item"><NavLink to="/unwatched">What's On Tonight?</NavLink></li>
