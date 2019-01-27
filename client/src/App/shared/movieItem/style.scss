@@ -1,12 +1,15 @@
 .movie-poster {
-  width: 100px;
+  width: 150px;
+  height: 219px;
   display: block;
+  background: #eee;
   margin-right: 10px;
   margin-bottom: 10px;
   float: left;
   @include media-breakpoint-up(sm) {
     margin-right: $margin-lg;
-    width: 190px;
+    width: 136px;
+    height: 200px;
   }
 }
 

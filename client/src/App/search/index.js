@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import MovieList from '../shared/movieList';
-
+const key = process.env.REACT_APP_OMDB_API_KEY;
 class MovieSearch extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       term: '',
-      results: []
+      results: [],
+      isFetching: false,
+      isFetched: false,
+      isError: false,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -44,8 +47,18 @@ class MovieSearch extends Component {
   }
 
   _fetchMovie(imdbID) {
-    return fetch(`https://www.omdbapi.com?apikey=${process.env.REACT_APP_OMDB_API_KEY}&r=json&i=${imdbID}&plot=short`, {
-      method: 'GET'
+    const baseUrl = 'https://www.omdbapi.com';
+    const queryString = `?apikey=${key}&r=json&i=${imdbID}&plot=short`;
+    const url = baseUrl + queryString;
+
+    this.setState({
+      results: [],
+      isFetching: true,
+      isFetched: false,
+      isError: false,
+    });
+    return fetch(url, {
+      method: 'GET',
     }).then((res) => {
       return res.json().then((m) => {
         let ratingObj = m.Ratings.find(m => m.Source === 'Rotten Tomatoes');
@@ -56,15 +69,26 @@ class MovieSearch extends Component {
           title: m.Title,
           plot: m.Plot,
           year: m.Year,
-          imdbID: m.imdbID
+          imdbID: m.imdbID,
         })
       });
     });
   }
 
   _searchForMovies(title) {
-    fetch(`https://www.omdbapi.com?apikey=${process.env.REACT_APP_OMDB_API_KEY}&r=json&s=${title}`, {
-      method: 'GET'
+    const baseUrl = 'https://www.omdbapi.com';
+    const queryString = `?apikey=${key}&r=json&s=${title}`;
+    const url = baseUrl + queryString;
+
+    this.setState({
+      results: [],
+      isFetching: true,
+      isFetched: false,
+      isError: false,
+    });
+
+    fetch(url, {
+      method: 'GET',
     }).then((res) => {
       res.json().then((res) => {
         let searchResults = res.Search || [];
@@ -72,18 +96,31 @@ class MovieSearch extends Component {
           return this._fetchMovie(movie.imdbID);
         })
         Promise.all(moviePromises).then((movies) => {
-          this.setState({results: movies});
+          this.setState({
+            results: movies,
+            isFetching: false,
+            isFetched: true,
+            isError: false,
+          });
         })
+      });
+    }).catch(err => {
+      console.log('Error searching for movies', err);
+      this.setState({
+        results: [],
+        isFetching: false,
+        isFetched: false,
+        isError: true,
       });
     });
   }
 
   render() {
     return (
-      <div className="search-wrapper">
+      <div>
         <form
-          className="search-form"
-          onSubmit={this.handleSubmit}>
+        className="search-form"
+        onSubmit={this.handleSubmit}>
           <div className="input-group">
             <input
               type="text"
@@ -98,9 +135,21 @@ class MovieSearch extends Component {
             </div>
           </div>
         </form>
-        <MovieList
-          movies={this.state.results}
-          type="search"/>
+
+        {this.state.isFetching &&
+          <div className="text-center">
+            <div className="spinner-border" role="status"> </div>
+            <div className="strong">Searching...</div>
+          </div>
+        }
+        {this.state.isFetched && !this.state.isError &&
+          <MovieList
+            movies={this.state.results}
+            type="search"/>
+        }
+        {this.state.isError &&
+          <span>There was an error loading your movies :(</span>
+        }
       </div>
     );
   }

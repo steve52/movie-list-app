@@ -7,7 +7,7 @@ import {
   BrowserRouter as Router,
   Redirect,
   Route,
-  NavLink
+  NavLink,
 } from 'react-router-dom';
 
 class App extends Component {
@@ -24,7 +24,7 @@ class App extends Component {
               </ul>
             </nav>
           </header>
-          <section className="row">
+          <section className="row d-flex justify-content-center">
             <Route path="/unwatched" component={Unwatched}/>
             <Route path="/watched" component={Watched}/>
             <Route path="/search" component={MovieSearch}/>

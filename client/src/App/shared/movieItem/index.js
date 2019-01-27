@@ -43,7 +43,7 @@ class Movie extends Component {
     super(props);
     this.state = {
       isSavingMovie: false,
-      isFinishedSaving: false
+      isFinishedSaving: false,
     };
   }
 
@@ -61,7 +61,7 @@ class Movie extends Component {
     fetch('/api/movies', {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: formData
+      body: formData,
     }).then((res) => {
       if (!res.ok) throw new Error('Network response was not ok');
       res.json().then((movie) => {
@@ -150,7 +150,7 @@ class Movie extends Component {
       <div className="movie">
         <span className="movie-rank d-none">{this.props.movie.rank}</span>
         <img
-          src={this.props.movie.poster}
+          src={this.props.movie.poster === 'N/A' ? '' : this.props.movie.poster}
           className="movie-poster img-thumbnail"
           alt="Movie Poster"
         />
