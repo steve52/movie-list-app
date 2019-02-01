@@ -154,7 +154,7 @@ class Movie extends Component {
           className="movie-poster img-thumbnail"
           alt="Movie Poster"
         />
-        <h5 className="movie-title h5">{this.props.movie.title}</h5>
+        <h5 className="movie-title h5">{this.props.movie.rank}. {this.props.movie.title}</h5>
 
         <div className="movie-year">
           {this.props.movie.year}
